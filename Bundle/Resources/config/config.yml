@@ -1,0 +1,43 @@
+imports:
+    - { resource: services.yml }
+
+highlight:
+   # Each provider in this list are use on after other
+   # if language given in template ins't allowed
+   providers: [ geshi, httphiliteme, httpappspot, highlight, pygment ]
+   # All globals options can be rewrite in a specific provider
+   # except cssclass who just added
+   globals:
+       linenos: true
+       blockstyles: ""
+       cssclass: highlight
+
+   highlight:
+       linenos: true
+       blockstyles: ""
+       cssclass: highlight
+
+   pygment:
+       linenos: true
+       blockstyles: ""
+       cssclass: pygment
+
+   geshi:
+       linenos: true
+       # Two possibilities fancy or normal
+       linestyle: fancy
+       cssclass: geshi
+
+   #line number not available with appspot
+   httpappspot:
+       blockstyles: "overflow:auto;color:white !important;"
+       cssclass: pygment appspot
+
+   httphiliteme:
+       linenos: true
+       #One of : colorful default emacs friendly fruity manni monokai murphy native pastie perldoc tango trac vs
+       style: native
+       #Additionnal css directive for div block
+       blockstyles: "overflow:auto;color:white !important;"
+       cssclass: pygment hiliteme
+   

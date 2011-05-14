@@ -1,0 +1,4 @@
+highlight_routes:
+   type: annotation
+   resource: "@HighlightBundle/Controller/DefaultController.php"
+   prefix: /highlight

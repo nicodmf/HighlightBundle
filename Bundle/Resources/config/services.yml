@@ -1,0 +1,11 @@
+services: 
+   highlight.configuration:
+       class: Highlight\Bundle\HighlightBundle
+       tags: 
+           - { name: configuration }
+   highlight.twig.extension: 
+       class: Highlight\Bundle\Extension\TwigExtension 
+       tags: 
+           - { name: twig.extension }
+       arguments: [@translator, @kernel, @service_container ]
+       #arguments: [@translator, @templating.globals, @templating.helper.assets ]
