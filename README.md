@@ -1,6 +1,6 @@
 Presentation
 ============
-This bundle transforme a part of text representing a source code in html formated text. He provider 5 highlighter :
+This bundle transforme a part of text representing a source code in html formated text. It provides 5 highlighter :
 
 - pygment
 - geshi
@@ -127,4 +127,11 @@ Usage
 -----
 It is possible to add routing properties to transform this bundle in highlighting server.
 
- - Add route in routing configuration file.
+ - Add imported route in routing configuration file.
+ 
+```
+import:
+   resource: @HighlightBundle/Resources/config/routing.yml
+```
+
+The news routes are accessible inthe url : `http://[site]/highlight/`. The web service `http://[site]/highlight/api`

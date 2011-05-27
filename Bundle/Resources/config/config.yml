@@ -1,6 +1,8 @@
 imports:
     - { resource: services.yml }
 
+sensio_framework_extra: ~
+
 highlight:
    # Each provider in this list are use on after other
    # if language given in template ins't allowed

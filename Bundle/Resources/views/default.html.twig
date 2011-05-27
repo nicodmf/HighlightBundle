@@ -1,6 +1,9 @@
 <html>
 <head>
-	{% block stylesheets %}{% endblock %}
+	{% stylesheets '@HighlightBundle/Resources/public/*.css' output='css/a.css' %}
+	<link href="{{ asset_url }}" type="text/css" rel="stylesheet" />
+	{% endstylesheets %}
+	<title>Highlight</title>
 	<style>
 	   html{background:#CCCCCC}
 		body{background:white;font-family:monospace; max-width:600px; margin:auto; padding:10px 50px; box-shadow:5px 0px 5px grey, -5px 0px 5px grey}
@@ -9,9 +12,22 @@
 	</style>
 </head>
 <body>
+<nav>
+	<a href="{{url('highlight__default_index')}}">Index</a>
+	<a href="{{url('highlight__default_api')}}">Api</a>
+	<a href="{{url('highlight__default_testapi')}}">Test de l'api</a>
+	<a href="{{url('highlight__default_test')}}">Test</a>
+</nav>
+{% if page is defined %}
+{% include "HighlightBundle::"~page~".html.twig" %}
+{% else %}
 	{% if content is defined and nodisplaycontent is not defined %}
-		{{ content |markdown }}
+		{{ content|raw }}
+		{% block content %}{% endblock %}
+	{% else %}
+		This Page provide test about highlight and a web service.
 	{% endif %}
-	{% block content %}{% endblock %}
+{% endif %}
+
 </body>
 </html>

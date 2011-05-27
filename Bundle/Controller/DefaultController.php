@@ -6,24 +6,26 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Config\Definition\Processor;
 use Highlight\Bundle\Post;
 use Highlight\Bundle\Providers\Providers;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class DefaultController extends Controller
 {
 	/**
-	 * @extra:Route("api")
-	 * @extra:Template("HighlightBundle::default.empty.twig")
+	 * @Route("api")
 	 */
     public function apiAction()
     {
-		 $configurations['vars'] = array_merge(
-			$this->container->get('request')->request->all(),
-			$this->container->get('request')->query->all()
+		$configurations['vars'] = array_merge(
+		$this->container->get('request')->request->all(),
+		$this->container->get('request')->query->all()
 		);
 		try{
-		 $processor = new Processor();
-       $configuration = new ApiConfiguration();
-       $configuration = $processor->processConfiguration($configuration, $configurations);
-		 $this->providers = new Providers(
+			$processor = new Processor();
+			$configuration = new ApiConfiguration();
+			$configuration = $processor->processConfiguration($configuration, $configurations);
+			$this->providers = new Providers(
 				$this->container->get('service_container')->getParameter('highlight'),
 				$this->container->get('kernel')->getCacheDir(),
 				$this->container->get('translator')
@@ -31,42 +33,57 @@ class DefaultController extends Controller
 			if($configuration['provider']!==null&&$configuration['provider']!=="")
 				$this->providers->setNamedProvider($configuration['provider']);
 			$content = $this->providers->getHtml($configuration['source'], $configuration['language']);
-			return $this->render('HighlightBundle::default.empty.twig',array('content'=>$content));
-       
+			return $this->render('HighlightBundle::default.empty.twig',array('content'=>$content));       
       }catch(\Exception $e){
-			return $this->render('HighlightBundle::api.html.twig');
+			return $this->render('HighlightBundle::default.html.twig',array('page'=>'api'));
 		}
     }
 	/**
-	 * @extra:Route("test")
-	 * @extra:Template("HighlightBundle::index.html.twig")
+	 * @Route("/")
+	 * @Template("HighlightBundle::default.html.twig")
 	 */
-    public function testAction()
+    public function indexAction()
     {
 		 return array();
     }
 	/**
-	 * @extra:Route("testapi")
-	 * @extra:Template("HighlightBundle::default.html.twig")
+	 * @Route("/test")
+	 * @Template("HighlightBundle::default.html.twig")
+	 */
+    public function testAction()
+    {
+		 return array('page'=>'test');
+    }
+	/**
+	 * @Route("/test/api")
+	 * @Template("HighlightBundle::default.html.twig")
 	 */
     public function testapiAction()
     {
-		$postdata = http_build_query(array(
-			'language'=>'php',
-			'source'=>'<?php echo "hello world";?>',
-			'provider'=>'geshi',
-			//'divstyles'=>$this->options['cssclass'],
-			//'linenos'=>$this->options['linenos']
-			));
-		$opts = array('http' =>
-			 array(
-				  'method'  => 'POST',
-				  'header'  => 'Content-type: application/x-www-form-urlencoded',
-				  'content' => $postdata
-			 )
+		$code="
+\$postdata = http_build_query(array(
+	'language'=>'php',
+	'source'=>'<?php echo \"hello world\";?>',
+	'provider'=>'geshi',
+	//'divstyles'=>\$this->options['cssclass'],
+	//'linenos'=>\$this->options['linenos']
+	));
+\$opts = array('http' =>
+	array(
+		'method'  => 'POST',
+		'header'  => 'Content-type: application/x-www-form-urlencoded',
+		'content' => \$postdata
+	)
+);
+\$context  = stream_context_create(\$opts);
+\$result = file_get_contents('http://'.\$_SERVER['SERVER_NAME'].'/app_dev.php/highlight/api', false, \$context);";
+		eval($code);
+		$this->providers = new Providers(
+			$this->container->get('service_container')->getParameter('highlight'),
+			$this->container->get('kernel')->getCacheDir(),
+			$this->container->get('translator')
 		);
-		$context  = stream_context_create($opts);
-		$result = file_get_contents('http://supervision.localhost.com/app_dev.php/highlight/api', false, $context);
-		return array('content'=>$result);
+		$htmlCode = $this->providers->getHtml("<?php\n".$code, 'php');
+		return array('content'=>"Le résultat de <br>$htmlCode</pre> est $result");
     }
 }
