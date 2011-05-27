@@ -2,7 +2,7 @@
 
 /* Highlighting theme definition: */
 
-pre.highlight.highlight { color:#000000; background-color:#ffffff; font-size:10pt; font-family:'Courier New';}
+pre.highlight.highlight { color:#000000; background-color:#ffffff; font-size:10pt; font-family:'Courier New';overflow:auto;}
 pre.highlight.highlight .hl.num { color:#2928ff; }
 pre.highlight.highlight .hl.esc { color:#ff00ff; }
 pre.highlight.highlight .hl.str { color:#ff0000; }

@@ -1,5 +1,5 @@
 /* GeSHi (c) Nigel McNie 2004 (http://qbnz.com/highlighter) */
-pre.highlight.geshi {border: 1px dotted #a0a0a0; font-family: 'Courier New', Courier, monospace; background-color: #f0f0f0; color: #0000bb;}
+pre.highlight.geshi {border: 1px dotted #a0a0a0;overflow:auto; font-family: 'Courier New', Courier, monospace; background-color: #f0f0f0; color: #0000bb;}
 pre.highlight.geshi .coMULTI,
 pre.highlight.geshi .co1,
 pre.highlight.geshi .co2,
