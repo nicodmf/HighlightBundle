@@ -14,9 +14,13 @@ Installation
 ============
 Standard symfony installation :
 
-- download and decompresse the bundle package in vendor/bundles/Highlight
+- download and decompresse the bundle package in `vendor/bundles/Highlight`
 - if git is installed, to perform this action, tape the command :
-    `git submodule add git://github.com/nicodmf/HighlightBundle.git vendor/bundles/Highlight`
+
+```
+git submodule add git://github.com/nicodmf/HighlightBundle.git vendor/bundles/Highlight`
+```
+    
 - add namespace in `app/autoload.php` :
 
 ``` php
@@ -51,19 +55,19 @@ imports:
   #...
   - { resource: @HighlightBundle/Resources/config/config.yml }
   #...
+```
 
 ###Test and api###
 It is possible to add routing properties to test and/or transform this bundle in highlighting server.
 
  - Add imported route in routing configuration file.
- 
+
 ```
 import:
    resource: @HighlightBundle/Resources/config/routing.yml
 ```
 
 The news routes are accessible in the url : `http://[site]/highlight/`. The web service `http://[site]/highlight/api` or with prefix if it has been defined.
-```
 
 Usage
 =====

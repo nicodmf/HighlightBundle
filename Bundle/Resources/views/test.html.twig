@@ -1,0 +1,89 @@
+{<!---->% highlight ruby %}
+{% highlight "ruby" %}
+$ irb
+
+require 'net/http'
+require 'uri'
+
+language = 'python'
+source = 'print "Hello World"'
+highlighter = 'pygment'
+
+request = Net::HTTP.post_form(URI.parse('this url'), {'language'=>language, 'source'=>source, 'highlighter'=>highlighter})
+puts request.body
+{% endhighlight %}
+
+{<!---->% highlight ruby geshi%}
+{% highlight "ruby" "geshi" %}
+$ irb
+
+require 'net/http'
+require 'uri'
+
+language = 'python'
+source = 'print "Hello World"'
+highlighter = 'pygment'
+
+request = Net::HTTP.post_form(URI.parse('this url'), {'language'=>language, 'source'=>source, 'highlighter'=>highlighter})
+puts request.body
+{% endhighlight %}
+
+{<!---->% highlight ruby pygment%}
+{% highlight "ruby" "pygment" %}
+$ irb
+
+require 'net/http'
+require 'uri'
+
+language = 'python'
+source = 'print "Hello World"'
+highlighter = 'pygment'
+
+request = Net::HTTP.post_form(URI.parse('this url'), {'language'=>language, 'source'=>source, 'highlighter'=>highlighter})
+puts request.body
+{% endhighlight %}
+
+{<!---->% highlight highlight %}
+{% highlight "ruby" "highlight" %}
+$ irb
+
+require 'net/http'
+require 'uri'
+
+language = 'python'
+source = 'print "Hello World"'
+highlighter = 'pygment'
+
+request = Net::HTTP.post_form(URI.parse('this url'), {'language'=>language, 'source'=>source, 'highlighter'=>highlighter})
+puts request.body
+{% endhighlight %}
+
+{<!---->% highlight httphiliteme %}
+{% highlight "ruby" "httphiliteme" %}
+$ irb
+
+require 'net/http'
+require 'uri'
+
+language = 'python'
+source = 'print "Hello World"'
+highlighter = 'pygment'
+
+request = Net::HTTP.post_form(URI.parse('this url'), {'language'=>language, 'source'=>source, 'highlighter'=>highlighter})
+puts request.body
+{% endhighlight %}
+
+{<!---->% highlight httpappspot %}
+{% highlight "ruby" "httpappspot" %}
+$ irb
+
+require 'net/http'
+require 'uri'
+
+language = 'python'
+source = 'print "Hello World"'
+highlighter = 'pygment'
+
+request = Net::HTTP.post_form(URI.parse('this url'), {'language'=>language, 'source'=>source, 'highlighter'=>highlighter})
+puts request.body
+{% endhighlight %}
