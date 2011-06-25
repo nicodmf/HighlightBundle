@@ -58,7 +58,7 @@ class DefaultController extends Controller
 	 * @Route("/test/api")
 	 * @Template("HighlightBundle::default.html.twig")
 	 */
-    public function testapiAction()
+    public function testApiAction()
     {
 		$code="
 \$postdata = http_build_query(array(
@@ -78,12 +78,7 @@ class DefaultController extends Controller
 \$context  = stream_context_create(\$opts);
 \$result = file_get_contents('http://'.\$_SERVER['SERVER_NAME'].'/app_dev.php/highlight/api', false, \$context);";
 		eval($code);
-		$this->providers = new Providers(
-			$this->container->get('service_container')->getParameter('highlight'),
-			$this->container->get('kernel')->getCacheDir(),
-			$this->container->get('translator')
-		);
-		$htmlCode = $this->providers->getHtml("<?php\n".$code, 'php');
+		$htmlCode = $this->container->get('highlight.twig.extension')->highlight("<?php\n".$code, 'php');
 		return array('content'=>"Le résultat de <br>$htmlCode</pre> est $result");
     }
 }

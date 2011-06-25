@@ -8,13 +8,13 @@ namespace Highlight\Bundle\Providers;
  */
 abstract class AbstractProvider
 {
-	protected static $instance = null;
+	//protected static $instance = null;
 	static function getInstance()
 	{
 		$class = get_called_class();
-		if(self::$instance===null)
-			self::$instance = new $class();
-		return self::$instance;
+		if($class::$instance===null)
+			$class::$instance = new $class();
+		return $class::$instance;
 	}
 	function setOptions($options)
 	{
@@ -26,6 +26,7 @@ abstract class AbstractProvider
 	}
 	public function setCachedDir($dir)
 	{
+		//echo get_class($this);
 		$dir.= strtolower(substr(get_class($this), strrpos(get_class($this),"\\")+1))."/";
 		if( ! file_exists($dir) ) mkdir($dir);
 		$this->cachedDir = $dir;

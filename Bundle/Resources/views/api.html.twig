@@ -28,7 +28,7 @@ http://github.com/trevorturk/pygments/blob/master/default.css
 
 
 ###Ruby Example###
-{% highlight ruby httphiliteme %}
+{% highlight "ruby" "httphiliteme" %}
 $ irb
 
 require 'net/http'
@@ -42,7 +42,7 @@ request = Net::HTTP.post_form(URI.parse('this url'), {'language'=>language, 'sou
 puts request.body
 {% endhighlight %}
 ###Php Example###
-{% highlight php httphiliteme %}
+{% highlight "php" "httphiliteme" %}
 <?php
 $postdata = http_build_query(array(
 	'language'=>'php',

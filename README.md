@@ -14,7 +14,9 @@ Installation
 ============
 Standard symfony installation :
 
-- download and decompresse the bundle package in vendor/bundles/Highlight (if git installed the command  `git submodule add git://github.com/nicodmf/HighlightBundle.git vendor/bundles/Highlight` perform this action)
+- download and decompresse the bundle package in vendor/bundles/Highlight
+- if git is installed, to perform this action, tape the command :
+    `git submodule add git://github.com/nicodmf/HighlightBundle.git vendor/bundles/Highlight`
 - add namespace in `app/autoload.php` :
 
 ``` php
@@ -49,6 +51,18 @@ imports:
   #...
   - { resource: @HighlightBundle/Resources/config/config.yml }
   #...
+
+###Test and api###
+It is possible to add routing properties to test and/or transform this bundle in highlighting server.
+
+ - Add imported route in routing configuration file.
+ 
+```
+import:
+   resource: @HighlightBundle/Resources/config/routing.yml
+```
+
+The news routes are accessible in the url : `http://[site]/highlight/`. The web service `http://[site]/highlight/api` or with prefix if it has been defined.
 ```
 
 Usage
@@ -71,7 +85,7 @@ An exemple in app/config/config.yml:
 
 ``` yaml
 highlight:
-    #This is the list of providers use one after other if language isn't available
+    #This is the list of providers use one after other if language isn't available in current provider
     providers: [ httphiliteme, geshi, httpappspot, highlight, pygment ]
     #The global options for all providers
     globals:
@@ -91,21 +105,21 @@ Highlight can be use as filter, function or parser
 As a filter, highlight take a defined string or a defined string variable, the highlighter to use is optional :
 
 ```
-{{ aDefinedStringVariable|highlight php pygment }}
+{{ aDefinedStringVariable|highlight php [pygment] }}
 ```
 
 ### Funtion
 The function work with same purpose, with another syntax :
 
 ```
-{{ highlight( aDefinedStringVariable, php, pygment) }}
+{{ highlight( aDefinedStringVariable, php[, pygment]) }}
 ```
 
 ### Block parser
 The parser is simply to use, because you don't have obligation to defined a variable. The code wich would be transformate is beetween standard twig tag. The highlighter is always optional :
 
 ```
-{{ highlight php pygment }}
+{{ highlight php [pygment] }}
 <?php echo "Bonjour à tous"; ?>
 {{ endhighlight }}
 ```
@@ -121,17 +135,5 @@ In the provider directory :
  - Create a provider class in providers
  - Add its creation in factory.php
 In the DependancyInjection directory
- - Update the config to added the new parameters
+ - Update the Configuration.php to added the new parameters
 
-Usage
------
-It is possible to add routing properties to transform this bundle in highlighting server.
-
- - Add imported route in routing configuration file.
- 
-```
-import:
-   resource: @HighlightBundle/Resources/config/routing.yml
-```
-
-The news routes are accessible inthe url : `http://[site]/highlight/`. The web service `http://[site]/highlight/api`

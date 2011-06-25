@@ -29,12 +29,13 @@ class HttpAppspot extends AbstractProvider implements ProviderInterface
 		$this->options = $options;
 	}
 	public function getExtension($language){return trim(shell_exec("cat ".$this->path."languagelist.txt|grep ' $language '|awk -F'filenames ' '{print $2}'|awk -F, '{print $1}'|sed -e 's/*.//g'"));}
+		
 	public function getHtml($source, $language, $filename)
 	{
 		$postdata = http_build_query(array(
 			'lang'=>strtolower($language),
 			'code'=>preg_replace('/\n/', "\r", $source),
-			//'divstyles'=>$this->options['cssclass'],
+			'divstyles'=>$this->options['cssclass'],
 			//'linenos'=>$this->options['linenos']
 			));
 		$opts = array('http' =>

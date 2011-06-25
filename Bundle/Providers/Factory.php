@@ -3,6 +3,7 @@ namespace Highlight\Bundle\Providers;
 class Factory{
 	static function create($type, $options, $cachedDir)
 	{
+		//echo "$type---\n";
 		switch($type)
 		{			
 			case "geshi" : $provider = Geshi::getInstance(); break;

@@ -17,26 +17,25 @@ class Providers{
 		if(!file_exists($this->cachedDir))mkdir($this->cachedDir);
 		$this->translator = $translator;
 	}
-	private function arraySearchWithoutCase($needle, $haystack){
-		if(array_search($needle, $haystack))return true;
-		array_walk($haystack,function(&$e,$k){$e=strtolower($e);});
-		return array_search(strtolower($needle), $haystack);
-	}
 	public function getHtml($source, $language)
 	{
-		$filename = $this->cachedDir.md5(serialize($this->options).$source.$language);
-		if(!file_exists($filename))
-		{
-			$this->setProvider(0);
-			file_put_contents($filename,$this->realGetHtml($source, $language));
-		}
-		return file_get_contents($filename);
+		if($this->provider===null)$this->setProvider(0);
+		return $this->realGetHtml($source, $language);
 	}
+
 	public function realGetHtml($source, $language)
-	{
+	{		
 		if( false === $this->arraySearchWithoutCase($language, $this->provider->getLangs()))
 			$this->findProvider($language);
-		return $this->provider->prepareAndGetHtml($source, $language);
+		$filename = $this->cachedDir.md5($this->providerName.serialize($this->options).serialize($this->provider).$source.$language);
+
+		//echo "\n".$this->providerName."\n".$filename;
+		
+		if(!file_exists($filename))
+		{
+			file_put_contents($filename,$this->provider->prepareAndGetHtml($source, $language));
+		}
+		return file_get_contents($filename);
 	}
 	public function getCssUrl()
 	{
@@ -44,16 +43,25 @@ class Providers{
 	}
 	public function setNamedProvider($providerName)
 	{
+		//echo "aaa".$providerName;
 		$p = $this->provider;
 		try{
 			$this->provider = Factory::create($providerName, $this->options, $this->cachedDir);
+			$this->providerName = $providerName;
 		} catch (\Exception $e){
-			echo $e;
+			throw $e;
 			$this->provider = $p;
 		}
 	}
+	private function arraySearchWithoutCase($needle, $haystack)
+	{
+		if(array_search($needle, $haystack))return true;
+		array_walk($haystack,function(&$e,$k){$e=strtolower($e);});
+		return array_search(strtolower($needle), $haystack);
+	}
 	private function setProvider($pos)
 	{
+		$this->providerName = $this->namedProvidersList[$pos];
 		if(isset($this->providersList[$pos]))
 		{
 			$this->provider = $this->providersList[$pos];

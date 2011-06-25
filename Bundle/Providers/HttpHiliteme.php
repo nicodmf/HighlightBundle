@@ -33,11 +33,12 @@ class HttpHiliteme extends AbstractProvider implements ProviderInterface
 	public function getExtension($language){return trim(shell_exec("cat ".$this->path."languagelist.txt|grep ' $language '|awk -F'filenames ' '{print $2}'|awk -F, '{print $1}'|sed -e 's/*.//g'"));}
 	public function getHtml($source, $language, $filename)
 	{
+		//echo "hiliteme";
 		$postdata = http_build_query(array(
 			'lexer'=>strtolower($language),
 			'code'=>preg_replace('/\n/', "\r", $source),
 			'style'=>$this->options['style'],
-//			'divstyles'=>$this->options['divstyles'],
+			//'divstyles'=>$this->options['divstyles'],
 			'linenos'=>$this->options['linenos']
 			));
 		$opts = array('http' =>
