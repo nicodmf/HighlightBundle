@@ -86,7 +86,7 @@ class Providers{
 	}
 	private function translate($str)
 	{
-		if($this->transaltor===null)return $str;
-		return $this->transaltor->trans($str);
+		if($this->translator===null)return $str;
+		return $this->translator->trans($str);
 	}
 }

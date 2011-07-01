@@ -1,6 +1,6 @@
 Presentation
 ============
-This bundle transforme a part of text representing a source code in html formated text. It provides 5 highlighter :
+This bundle transforms a part of text representing a source code in html formated text. It provides 5 highlighters :
 
 - pygment
 - geshi
@@ -8,14 +8,14 @@ This bundle transforme a part of text representing a source code in html formate
 - http request to appspot
 - http request to hiliteme
 
-Two caches mecanismes permit to conserve highlighted informations about languages and work made by the highlighter, moreover symfony integrate cache.
+Two caches mechanisms permit to conserve highlighted informations about languages and work made by the highlighter, moreover symfony integrated cache.
 
 Installation
 ============
 Standard symfony installation :
 
-- download and decompresse the bundle package in `vendor/bundles/Highlight`
-- if git is installed, to perform this action, tape the command :
+- download and decompress the bundle package in `vendor/bundles/Highlight`
+- if git is installed, to perform this action, enter the command :
 
 ```
 git submodule add git://github.com/nicodmf/HighlightBundle.git vendor/bundles/Highlight`
@@ -67,14 +67,14 @@ import:
    resource: @HighlightBundle/Resources/config/routing.yml
 ```
 
-The news routes are accessible in the url : `http://[site]/highlight/`. The web service `http://[site]/highlight/api` or with prefix if it has been defined.
+The new routes are accessible in the url : `http://[site]/highlight/`. The web service `http://[site]/highlight/api` or with prefix if it has been defined.
 
 Usage
 =====
 Highlight can be use in twig or in phptemplates.
 Css
 ---
-Except for hiliteme wich not propose to transform text with adding css classes and make transform by adding css properties, the colors are configurable by the css file included in the `Ressource/public` directory. The colors aren't available if you don't add stylesheet in your template. Sorry for this inconvenient way, but at this moment symfony don't propose core mecanisme to link css in submodules.
+Except for hiliteme which not propose to transform text with adding css classes and make transform by adding css properties, the colors are configurable by the css file included in the `Ressource/public` directory. The colors aren't available if you don't add stylesheet in your template. Sorry for this inconvenient way, but at this moment symfony don't propose core mechanisms to link css in submodules.
 
 ``` twig
 {% stylesheets '@HighlightBundle/Resources/public/*.css' output='css/a.css' %}
@@ -84,26 +84,66 @@ Except for hiliteme wich not propose to transform text with adding css classes a
 
 Options
 -------
-The default options can be overide by adding options after importation of the bundle config.
-An exemple in app/config/config.yml:
+The default options can be overriden by adding options after importation of the bundle config.
+An example in app/config/config.yml:
 
 ``` yaml
 highlight:
-    #This is the list of providers use one after other if language isn't available in current provider
-    providers: [ httphiliteme, geshi, httpappspot, highlight, pygment ]
-    #The global options for all providers
-    globals:
-       #Add line number if the provider in use can display them
+   # Each provider in this list are use on after other
+   # if language given in template ins't allowed
+   providers: [ geshi, httphiliteme, httpappspot, highlight, pygment ]
+   # All globals options can be rewrite in a specific provider
+   # except cssclass who just added
+   globals:
        linenos: true
+       blockstyles: ""
        cssclass: highlight
-    #The specific option for the httphiliteme provider
-    httphiliteme:
-       blockstyles: "overflow:auto;color:white !important; border-radius:10px;"
+
+   highlight:
+       linenos: true
+       blockstyles: ""
+       cssclass: highlight
+
+   pygment:
+       linenos: true
+       blockstyles: ""
+       cssclass: pygment
+
+   geshi:
+       linenos: false
+       # Two possibilities fancy or normal
+       linestyle: normal
+       cssclass: geshi
+
+   #line number not available with appspot
+   httpappspot:
+       blockstyles: "overflow:auto;color:white !important;"
+       cssclass: pygment appspot
+
+   httphiliteme:
+       linenos: false
+       #One of : colorful default emacs friendly fruity manni monokai murphy native pastie perldoc tango trac vs
+       style: pastie
+       #Additionnal css directive for div block
+       blockstyles: "overflow:auto;color:white !important;"
+       cssclass: pygment hiliteme
+       
+services:
+    highlight.configuration:
+        class: Highlight\Bundle\HighlightBundle
+        tags:
+            - { name: configuration }
+    highlight.twig.extension:
+        class: Highlight\Bundle\Extension\TwigExtension
+        tags:
+            - { name: twig.extension }
+        arguments: [@translator, @kernel, @service_container ]
+        #arguments: [@translator, @templating.globals, @templating.helper.assets ]
 ```
 
 In Twig
 -------
-Highlight can be use as filter, function or parser
+Highlight can be used as filter, function or parser
 
 ### Filter
 As a filter, highlight take a defined string or a defined string variable, the highlighter to use is optional :
