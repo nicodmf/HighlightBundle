@@ -1,0 +1,29 @@
+{
+  "name": "nicodmf/hihlight-bundle",
+  "description": "This bundle transforms a part of text representing a source code in html formated text, providing 5 highlighter: pygment, geshi, highlight, http request to appspot, http request to hiliteme",
+  "keywords": ["highligh", "code", "pygment", "geshi", "highlight"],
+  "type": "symfony-bundle",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "nicodmf"
+    }
+  ],
+  "require": {
+    "php":                            ">=5.3.2",
+    "symfony/symfony":                ">=2.0.12",
+    "doctrine/orm":                   ">=2.1.0",
+    "twig/extensions":                "*",
+
+    "symfony/assetic-bundle":         "2.0.*",
+    "sensio/generator-bundle":        "2.0.*",
+    "sensio/framework-extra-bundle":  "2.0.*",
+    "sensio/distribution-bundle":     "2.0.*",
+    "jms/security-extra-bundle":      "1.0.*"
+  },
+  "autoload": {
+    "psr-0": { "Highlight\\Bundle": ""
+    }
+  },
+  "target-dir" : "Highlight"
+}
