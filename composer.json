@@ -1,5 +1,5 @@
 {
-  "name": "nicodmf/higlight-bundle",
+  "name": "nicodmf/highlight-bundle",
   "description": "This bundle transforms a part of text representing a source code in html formated text, providing 5 highlighter: pygment, geshi, highlight, http request to appspot, http request to hiliteme",
   "keywords": ["highligh", "code", "pygment", "geshi", "highlight"],
   "type": "symfony-bundle",
