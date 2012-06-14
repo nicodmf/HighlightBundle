@@ -51,8 +51,9 @@ class Pygment extends AbstractProvider implements ProviderInterface
 	public function getHtml($source, $language, $filename)
 	{
 		if(!file_exists($filename)) file_put_contents($filename,$source);
-        $str = shell_exec("pygmentize ".$this->options['line']." -f html -O nowrap=true -l '".strtolower($language)."' $filename");
-		$style = $this->options['blockstyles']!=""?"style=\"".$this->options['blockstyles']:"";
-		return "<pre $style class=\"".$this->options['cssclass']." ".$language."\">".preg_replace("//", "", $str)."</pre>";
+
+        $str = shell_exec("pygmentize ".$this->options['line']." -f html -l '".strtolower($language)."' ".$filename);
+        $style = $this->options['blockstyles']!=""?"style=\"".$this->options['blockstyles']:"";
+        return "<pre $style class=\"".$this->options['cssclass']." ".$language."\">".preg_replace("//", "", $str)."</pre>";
 	}
 }
