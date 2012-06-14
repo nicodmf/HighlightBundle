@@ -19,7 +19,7 @@ class Node extends \Twig_Node
             ->addDebugInfo($this)
             ->write('ob_start();')
             ->subcompile($this->getNode('source'))
-            ->write("\$context['source_$rand'] = new Twig_Markup(ob_get_clean());\n")
+            ->write("\$context['source_$rand'] = new Twig_Markup(ob_get_clean(), \$this->env->getCharset());\n")
             ->write("\$context['language_$rand'] = ")->subcompile($this->getNode('language'))->raw(";\n")
             ->write("\$context['provider_$rand'] = ")->subcompile($this->getNode('provider'))->raw(";\n")
             ->write("echo \$this->env->getExtension('twig.extension.highlight')->highlight(\n")
