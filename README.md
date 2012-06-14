@@ -149,23 +149,23 @@ Highlight can be used as filter, function or parser
 As a filter, highlight take a defined string or a defined string variable, the highlighter to use is optional :
 
 ```
-{{ aDefinedStringVariable|highlight php [pygment] }}
+{{ aDefinedStringVariable|highlight 'php' ['pygment'] }}
 ```
 
 ### Funtion
 The function work with same purpose, with another syntax :
 
 ```
-{{ highlight( aDefinedStringVariable, php[, pygment]) }}
+{{ highlight( aDefinedStringVariable, 'php'[, 'pygment']) }}
 ```
 
 ### Block parser
 The parser is simply to use, because you don't have obligation to defined a variable. The code wich would be transformate is beetween standard twig tag. The highlighter is always optional :
 
 ```
-{{ highlight php [pygment] }}
+{% highlight 'php' ['pygment'] %}
 <?php echo "Bonjour à tous"; ?>
-{{ endhighlight }}
+{% endhighlight %}
 ```
 
 Extends
