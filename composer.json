@@ -21,7 +21,7 @@
     "psr-0": { "Highlight\\Bundle": ""
     }
   },
-  "target-dir" : "bundles\\Highlight",
+  "target-dir" : "Highlight",
   "extra": {
     "branch-alias": {
         "dev-master": "2.1-dev"
