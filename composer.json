@@ -27,6 +27,7 @@
       "psr-0": { "Highlight": "" }
   },
   "target-dir" : "Highlight",
+  "minimum-stability": "dev",
   "extra": {
     "branch-alias": {
         "dev-master": "2.2-dev"
