@@ -25,7 +25,6 @@
   
   "autoload": {
       "psr-0": { "Highlight": "" }
-    }
   },
   "target-dir" : "Highlight",
   "extra": {
