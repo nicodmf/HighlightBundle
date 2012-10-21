@@ -20,6 +20,9 @@
   "scripts": {
      "post-install-cmd": [
          "Highlight\\Bundle\\ScriptHandler::install"
+     ],
+     "post-update-cmd": [
+         "Highlight\\Bundle\\ScriptHandler::install"
      ]
   },
   
