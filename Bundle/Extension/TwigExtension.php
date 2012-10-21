@@ -28,7 +28,10 @@ class TwigExtension extends \Twig_Extension {
 	
     public function getFunctions()
     {
-        return $this->getFilters();
+        return array(
+            'highlight'  => new \Twig_Function_Method($this, 'highlight', array('is_safe' => array('html'))),
+            'hl'  => new \Twig_Function_Method($this, 'highlight', array('is_safe' => array('html'))),
+        );
     }
 	
     public function getTokenParsers()

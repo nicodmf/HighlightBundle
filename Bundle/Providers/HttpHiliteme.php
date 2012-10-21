@@ -36,10 +36,10 @@ class HttpHiliteme extends AbstractProvider implements ProviderInterface
 		//echo "hiliteme";
 		$postdata = http_build_query(array(
 			'lexer'=>strtolower($language),
-			'code'=>preg_replace('/\n/', "\r", $source),
 			'style'=>$this->options['style'],
 			//'divstyles'=>$this->options['divstyles'],
-			'linenos'=>$this->options['linenos']
+			'linenos'=>$this->options['linenos'],
+			'code'=>preg_replace('/\n/', "\r", $source),
 			));
 		$opts = array('http' =>
 			 array(
@@ -49,8 +49,8 @@ class HttpHiliteme extends AbstractProvider implements ProviderInterface
 			 )
 		);
 		$context  = stream_context_create($opts);
-
-		$str = file_get_contents('http://www.hilite.me/api', false, $context);
+                
+		$str = file_get_contents('http://hilite.me/api', false, $context);
 		$str = substr($str, 0, strlen($str)-1);
 		$style = $this->options['blockstyles']!=""?"style=\"".$this->options['blockstyles']."\"":"";
 		return "<div $style class=\"".$this->options['cssclass']." ".$language."\">".$str."</div>";

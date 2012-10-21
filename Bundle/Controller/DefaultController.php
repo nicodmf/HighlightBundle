@@ -76,7 +76,7 @@ class DefaultController extends Controller
 	)
 );
 \$context  = stream_context_create(\$opts);
-\$result = file_get_contents('http://'.\$_SERVER['SERVER_NAME'].'/app_dev.php/highlight/api', false, \$context);";
+\$result = file_get_contents('http://'.\$_SERVER['SERVER_NAME'].'".$this->get('router')->generate('highlight__default_api')."', false, \$context);";
 		eval($code);
 		$htmlCode = $this->container->get('highlight.twig.extension')->highlight("<?php\n".$code, 'php');
 		return array('content'=>"Le résultat de <br>$htmlCode</pre> est $result");

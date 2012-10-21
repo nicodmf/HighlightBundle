@@ -9,12 +9,12 @@ class HighlightConfig extends Extension
 {
     public function load(array $configs, ContainerBuilder $container) 
     {
-		$processor = new Processor();
+        $processor = new Processor();
         $configuration = new Configuration();
 
         $configuration = $processor->processConfiguration($configuration, $configs);
-		$container->setParameter('highlight', $configuration);
-	}
+        $container->setParameter('highlight', $configuration);
+    }
     public function getXsdValidationBasePath()
     {
         return __DIR__ . '/../Resources/config/';

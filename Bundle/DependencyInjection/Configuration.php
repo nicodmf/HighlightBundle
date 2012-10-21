@@ -30,7 +30,7 @@ class Configuration implements ConfigurationInterface
             ->children()
 					->arrayNode('providers')
 						 ->performNoDeepMerging()
-						 ->addDefaultsIfNotSet()
+						 //->addDefaultsIfNotSet()
 						 ->prototype('scalar')->end()
 						 ->defaultValue(array('geshi','pygment','highlight'))
 					->end()
@@ -50,7 +50,7 @@ class Configuration implements ConfigurationInterface
         $node
             ->children()
                ->arrayNode('globals')->isRequired()->cannotBeEmpty()
-						->addDefaultsIfNotSet()
+						//->addDefaultsIfNotSet()
 						->children()
                      ->booleanNode('linenos')->defaultFalse()->end()
                      ->scalarNode('cssclass')->defaultValue("highlight")->end()
@@ -64,7 +64,7 @@ class Configuration implements ConfigurationInterface
         $node
             ->children()
                ->arrayNode('geshi')->isRequired()->cannotBeEmpty()
-						->addDefaultsIfNotSet()
+						//->addDefaultsIfNotSet()
 						->children()
                      ->booleanNode('linenos')->defaultTrue()->end()
                      ->scalarNode('linestyle')->defaultValue("fancy")->end()
@@ -78,7 +78,7 @@ class Configuration implements ConfigurationInterface
         $node
             ->children()
                ->arrayNode('highlight')->isRequired()->cannotBeEmpty()
-						->addDefaultsIfNotSet()
+						//->addDefaultsIfNotSet()
 						->children()
                      ->booleanNode('linenos')->defaultTrue()->end()
                      ->scalarNode('cssclass')->defaultValue("highlight")->end()
@@ -92,7 +92,7 @@ class Configuration implements ConfigurationInterface
         $node
             ->children()
                ->arrayNode('pygment')->isRequired()->cannotBeEmpty()
-						->addDefaultsIfNotSet()
+						//->addDefaultsIfNotSet()
 						->children()
                      ->booleanNode('linenos')->defaultTrue()->end()
                      ->scalarNode('cssclass')->defaultValue("pygment")->end()
@@ -106,7 +106,7 @@ class Configuration implements ConfigurationInterface
         $node
             ->children()
                ->arrayNode('httpappspot')->isRequired()->cannotBeEmpty()
-						->addDefaultsIfNotSet()
+						//->addDefaultsIfNotSet()
 						->children()
                      ->scalarNode('cssclass')->defaultValue("pygment")->end()
                      ->scalarNode('blockstyles')->defaultValue("")->end()
@@ -119,10 +119,10 @@ class Configuration implements ConfigurationInterface
         $node
             ->children()
                ->arrayNode('httphiliteme')->isRequired()->cannotBeEmpty()
-						->addDefaultsIfNotSet()
+						//->addDefaultsIfNotSet()
 						->children()
                      ->booleanNode('linenos')->defaultTrue()->end()
-                     ->scalarNode('style')->defaultValue("native")->end()
+                     ->scalarNode('style')->defaultValue("colorful")->end()
                      ->scalarNode('cssclass')->defaultValue("pygment")->end()
                      ->scalarNode('blockstyles')->defaultValue("")->end()
                   ->end()						
