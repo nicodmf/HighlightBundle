@@ -19,7 +19,7 @@
   },
   "scripts": {
      "post-install-cmd": [
-         "Highlight\\Bundle\\ScriptHandler::install",
+         "Highlight\\Bundle\\ScriptHandler::install"
      ]
   },
   
