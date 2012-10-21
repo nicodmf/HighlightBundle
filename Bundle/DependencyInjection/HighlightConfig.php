@@ -7,24 +7,24 @@ use Symfony\Component\Config\Definition\Processor;
 
 class HighlightConfig extends Extension
 {
-    public function load(array $configs, ContainerBuilder $container) 
-    {
+	public function load(array $configs, ContainerBuilder $container) 
+	{
 		$processor = new Processor();
-        $configuration = new Configuration();
+		$configuration = new Configuration();
 
-        $configuration = $processor->processConfiguration($configuration, $configs);
+		$configuration = $processor->processConfiguration($configuration, $configs);
 		$container->setParameter('highlight', $configuration);
 	}
-    public function getXsdValidationBasePath()
-    {
-        return __DIR__ . '/../Resources/config/';
-    }
+	public function getXsdValidationBasePath()
+	{
+		return __DIR__ . '/../Resources/config/';
+	}
 
-    public function getNamespace()
-    {
-        return 'http://www.example.com/symfony/schema/';
-    }
-    public function getAlias(){
+	public function getNamespace()
+	{
+		return 'http://www.example.com/symfony/schema/';
+	}
+	public function getAlias(){
 		 return "highlight";
 	 }
 }
