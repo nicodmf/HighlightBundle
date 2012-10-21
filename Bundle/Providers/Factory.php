@@ -11,7 +11,7 @@ class Factory{
 			case "pygment" : $provider =  Pygment::getInstance(); break;
 			case "httpappspot" : $provider =  HttpAppspot::getInstance(); break;
 			case "httphiliteme" : $provider =  HttpHiliteme::getInstance(); break;
-			default : throw new \Exception("Highlighter <$type> not implemented");
+			default : throw new \Exception("Highlighter < $type > not implemented");
 		}	
 		$opt = array();
 		$options[$type]['cssclass'] .= " ".$options['globals']['cssclass'];

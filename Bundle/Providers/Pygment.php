@@ -36,11 +36,11 @@ class Pygment extends AbstractProvider implements ProviderInterface
 		$options['cssclass'] = $opt['cssclass'];
 		$options['blockstyles'] = $opt['blockstyles'];
 
-        $to = "";
-        if($opt['linenos']==true) {
-            $to="linenos=1";
-        }
-        $options['line'] = "-O ".$to;
+		$to = "";
+		if($opt['linenos']==true) {
+			$to="linenos=1";
+		}
+		$options['line'] = "-O ".$to;
 
 		$this->options = $options;
 	}
@@ -50,8 +50,8 @@ class Pygment extends AbstractProvider implements ProviderInterface
 	{
 		if(!file_exists($filename)) file_put_contents($filename,$source);
 
-        $str = shell_exec("pygmentize ".$this->options['line']." nowrap=true -f html -l '".strtolower($language)."' ".$filename);
-        $style = $this->options['blockstyles']!=""?"style=\"".$this->options['blockstyles']:"";
-        return "<pre $style class=\"".$this->options['cssclass']." ".$language."\">".preg_replace("//", "", $str)."</pre>";
+		$str = shell_exec("pygmentize ".$this->options['line']." nowrap=true -f html -l '".strtolower($language)."' ".$filename);
+		$style = $this->options['blockstyles']!=""?"style=\"".$this->options['blockstyles']:"";
+		return "<pre $style class=\"".$this->options['cssclass']." ".$language."\">".preg_replace("//", "", $str)."</pre>";
 	}
 }
