@@ -17,11 +17,6 @@
     "symfony/assetic-bundle":  "2.*.*"
 
   },
-  "scripts": {
-     "post-install-cmd": [
-         "Highlight\\Bundle\\ScriptHandler::install"
-     ]
-  },
   
   "autoload": {
       "psr-0": { "Highlight": "" }
