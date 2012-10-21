@@ -16,8 +16,21 @@ Installation
 
 Add the following line in composer.json:
 
-- download and decompress the bundle package in `vendor/bundles/Highlight`
-- if git is installed, to perform this action, enter the command :
+```json
+{
+//...
+   "require":{
+      //....
+      "nicodmf/highlight-bundle": "2.1.*"
+      //...
+   }
+}
+```
+Activate changes via the command:
+
+```
+php composer.phar update
+```
 
 ###Manual installation
 
@@ -38,24 +51,22 @@ $loader->registerNamespaces(array(
 ));
 ```
 
-- add class creation in `app/AppKernel.php`
-
-``` php
-    <?php
-    //...
-    public function registerBundles()
-    {
-        $bundles = array(
-            //...
-            new Highlight\Bundle\HighlightBundle(),
-            //...
-        );
-    }
-    //...
-```
-
 Activation
 ==========
+
+``` php                                                                                         
+    <?php                                                                                       
+    //...                                                                                       
+    public function registerBundles()                                                           
+    {                                                                                           
+        $bundles = array(                                                                       
+            //...                                                                               
+            new Highlight\Bundle\HighlightBundle(),                                             
+            //...                                                                               
+        );                                                                                      
+    }                                                                                           
+    //...                                                                                       
+```
 
 - add config import in app/config/config.yml
 
