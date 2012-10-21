@@ -12,16 +12,22 @@ Two caches mechanisms permit to conserve highlighted informations about language
 
 Installation
 ============
-Standard symfony installation :
+###Standard symfony installation :
+
+Add the following line in composer.json:
 
 - download and decompress the bundle package in `vendor/bundles/Highlight`
 - if git is installed, to perform this action, enter the command :
+
+###Manual installation
+
+Download and decompress the bundle package in `vendor/bundles/Highlight` manually or via github:
 
 ```
 git submodule add git://github.com/nicodmf/HighlightBundle.git vendor/bundles/Highlight`
 ```
     
-- add namespace in `app/autoload.php` :
+- add namespace in the autoloader :
 
 ``` php
 <?php
@@ -48,13 +54,25 @@ $loader->registerNamespaces(array(
     //...
 ```
 
+Activation
+==========
+
 - add config import in app/config/config.yml
 
 ``` yaml
 imports:
   #...
-  - { resource: @HighlightBundle/Resources/config/config.yml }
+  - { resource: "@HighlightBundle/Resources/config/config.yml" }
   #...
+```
+
+- add the bundle in assetic configuration in `app/config/config.yml`:
+
+``` yaml
+assetic:
+    #...
+    bundles:        [ HighlightBundle]
+    #...
 ```
 
 ###Test and api###
