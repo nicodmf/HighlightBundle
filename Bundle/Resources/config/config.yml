@@ -32,7 +32,7 @@ highlight:
 
    #line number not available with appspot
    httpappspot:
-       blockstyles: "overflow:auto;color:white !important;"
+       blockstyles: "overflow:auto;"
        cssclass: pygment appspot
 
    httphiliteme:
@@ -40,6 +40,6 @@ highlight:
        #One of : colorful default emacs friendly fruity manni monokai murphy native pastie perldoc tango trac vs
        style: native
        #Additionnal css directive for div block
-       blockstyles: "overflow:auto;color:white !important;"
+       blockstyles: "overflow:auto;"
        cssclass: pygment hiliteme
    

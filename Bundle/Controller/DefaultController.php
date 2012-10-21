@@ -15,8 +15,8 @@ class DefaultController extends Controller
 	/**
 	 * @Route("api")
 	 */
-    public function apiAction()
-    {
+	public function apiAction()
+	{
 		$configurations['vars'] = array_merge(
 		$this->container->get('request')->request->all(),
 		$this->container->get('request')->query->all()
@@ -33,33 +33,33 @@ class DefaultController extends Controller
 			if($configuration['provider']!==null&&$configuration['provider']!=="")
 				$this->providers->setNamedProvider($configuration['provider']);
 			$content = $this->providers->getHtml($configuration['source'], $configuration['language']);
-			return $this->render('HighlightBundle::default.empty.twig',array('content'=>$content));       
-      }catch(\Exception $e){
+			return $this->render('HighlightBundle::default.empty.twig',array('content'=>$content));	   
+		}catch(\Exception $e){
 			return $this->render('HighlightBundle::default.html.twig',array('page'=>'api'));
 		}
-    }
+	}
 	/**
 	 * @Route("/")
 	 * @Template("HighlightBundle::default.html.twig")
 	 */
-    public function indexAction()
-    {
+	public function indexAction()
+	{
 		 return array();
-    }
+	}
 	/**
 	 * @Route("/test")
 	 * @Template("HighlightBundle::default.html.twig")
 	 */
-    public function testAction()
-    {
+	public function testAction()
+	{
 		 return array('page'=>'test');
-    }
+	}
 	/**
 	 * @Route("/test/api")
 	 * @Template("HighlightBundle::default.html.twig")
 	 */
-    public function testApiAction()
-    {
+	public function testApiAction()
+	{
 		$code="
 \$postdata = http_build_query(array(
 	'language'=>'php',
@@ -76,9 +76,9 @@ class DefaultController extends Controller
 	)
 );
 \$context  = stream_context_create(\$opts);
-\$result = file_get_contents('http://'.\$_SERVER['SERVER_NAME'].'/app_dev.php/highlight/api', false, \$context);";
+\$result = file_get_contents('http://'.\$_SERVER['SERVER_NAME'].'".$this->get('router')->generate('highlight__default_api')."', false, \$context);";
 		eval($code);
 		$htmlCode = $this->container->get('highlight.twig.extension')->highlight("<?php\n".$code, 'php');
 		return array('content'=>"Le résultat de <br>$htmlCode</pre> est $result");
-    }
+	}
 }
