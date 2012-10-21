@@ -11,15 +11,15 @@
   ],
   "require": {
     "php":               ">=5.3.2",
-    "symfony/symfony":   ">=2.1.0",
+    "symfony/symfony":   "2.1.*",
     "twig/extensions":   "*",
 
-    "symfony/assetic-bundle":  "*"
+    "symfony/assetic-bundle":  "2.1.*"
 
   },
   "autoload": {
     "psr-0": { "Highlight": "Highlight"
     }
   },
-  "target-dir" : "Highlight",
+  "target-dir" : "Highlight"
 }
