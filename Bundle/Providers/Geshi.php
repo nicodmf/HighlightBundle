@@ -29,7 +29,7 @@ class Geshi extends AbstractProvider implements ProviderInterface
 		else $ls=\GESHI_NORMAL_LINE_NUMBERS;
 		if($opt['linenos']==true) $hl->enable_line_numbers($ls);
 		else $hl->enable_line_numbers(\GESHI_NO_LINE_NUMBERS);
-		$hl->set_overall_style($opt['blockstyles']);
+		if($opt['blockstyles']) $hl->set_overall_style($opt['blockstyles']);
 		$hl->set_overall_class($opt['cssclass']." $language");
 	}
 	static public function getHighlighter()
