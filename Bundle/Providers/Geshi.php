@@ -31,6 +31,7 @@ class Geshi extends AbstractProvider implements ProviderInterface
 		else $hl->enable_line_numbers(\GESHI_NO_LINE_NUMBERS);
 		if($opt['blockstyles']) $hl->set_overall_style($opt['blockstyles']);
 		$hl->set_overall_class($opt['cssclass']." $language");
+		$hl->enable_keyword_links($opt['enable_links']);
 	}
 	static public function getHighlighter()
 	{
