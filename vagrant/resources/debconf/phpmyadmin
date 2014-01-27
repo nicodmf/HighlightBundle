@@ -1,0 +1,5 @@
+phpmyadmin phpmyadmin/dbconfig-install boolean true
+phpmyadmin phpmyadmin/app-password-confirm password phpmyadminpass
+phpmyadmin phpmyadmin/mysql/admin-pass password root
+phpmyadmin phpmyadmin/mysql/app-pass password phpmyadminpass
+phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2

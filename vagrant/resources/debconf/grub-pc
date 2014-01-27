@@ -1,0 +1,14 @@
+grub-pc grub2/kfreebsd_cmdline  string
+grub-pc grub2/device_map_regenerated    note
+grub-pc grub2/linux_cmdline     string
+grub-pc grub-pc/install_devices_failed  boolean false
+grub-pc grub-pc/chainload_from_menu.lst boolean true
+grub-pc grub-pc/kopt_extracted  boolean true
+grub-pc grub-pc/postrm_purge_boot_grub  boolean false
+grub-pc grub2/kfreebsd_cmdline_default  string  quiet
+grub-pc grub2/linux_cmdline_default     string
+grub-pc grub-pc/install_devices_empty   boolean false
+grub-pc grub-pc/install_devices multiselect     /dev/sda
+grub-pc grub-pc/install_devices_failed_upgrade  boolean true
+grub-pc grub-pc/install_devices_disks_changed   multiselect     /dev/sda
+grub-pc grub-pc/mixed_legacy_and_grub2  boolean true

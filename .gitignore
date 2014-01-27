@@ -1,2 +1,4 @@
 /nbproject
 /.idea/
+.vagrant
+vagrant/provision.log

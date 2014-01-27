@@ -1,0 +1,44 @@
+<VirtualHost *:80>
+    ServerAdmin webmaster@localhost
+    ServerName www.cloudmylife.com
+    DocumentRoot /var/www/symfony/web
+
+    <Directory /var/www/symfony/web>
+        DirectoryIndex index.php
+        Options +FollowSymLinks
+        AllowOverride All
+        Order allow,deny
+        Allow from all
+    </Directory>
+    ErrorLog /var/log/apache2/error.log
+
+    # Possible values include: debug, info, notice, warn, error, crit,
+    # alert, emerg.
+    LogLevel warn
+
+    CustomLog /var/log/apache2/access.log combined
+
+</VirtualHost>
+
+<VirtualHost *:443>
+    ServerAdmin webmaster@localhost
+    ServerName www.cloudmylife.com
+    DocumentRoot /var/www/symfony/web
+    SetEnv APPLICATION_ENV "development"
+    SSLEngine on
+    SSLCertificateFile /etc/apache2/ssl/apache.pem
+    <Directory /var/www/symfony/web>
+        DirectoryIndex index.php
+        Options +FollowSymLinks
+        AllowOverride All
+        Order allow,deny
+        Allow from all
+    </Directory>
+    ErrorLog /var/log/apache2/error.log
+
+    # Possible values include: debug, info, notice, warn, error, crit,
+    # alert, emerg.
+    LogLevel warn
+
+    CustomLog /var/log/apache2/access.log combined
+</VirtualHost>
